@@ -1,0 +1,35 @@
+{
+  "name": "query-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "frontend": "vite --config src/frontend/vite.config.js",
+    "build:frontend": "vite build --config src/frontend/vite.config.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "js2xmlparser": "^5.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "mysql2": "^3.10.3",
+    "node-cron": "^3.0.3",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^9.0.1",
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "autoprefixer": "^10.4.19",
+    "nodemon": "^3.1.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.4.2"
+  }
+}

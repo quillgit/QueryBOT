@@ -1,0 +1,17 @@
+# Node
+node_modules/
+
+# Env credentials (do NOT commit secrets)
+.env
+
+# Frontend build output
+src/frontend/dist/
+
+# Logs and runtime
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS noise
+.DS_Store
+Thumbs.db
