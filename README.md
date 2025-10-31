@@ -13,7 +13,7 @@ Run and schedule MySQL queries with a simple Vue + Express dashboard. Includes J
 - Create scheduled jobs with a cron expression and SQL text.
 - Run ad-hoc queries and preview results.
 - View scheduled jobs and execution logs.
-- Login required for write actions (run, create, delete), read endpoints remain public by default.
+- Login required for all actions and reads (run, create, delete, list jobs, view logs).
 - Reusable modal for previews; error banner surfaces backend/API errors.
 
 ### REST API
@@ -21,8 +21,8 @@ Run and schedule MySQL queries with a simple Vue + Express dashboard. Includes J
 - `POST /api/run` (auth) → execute an ad-hoc query and return a preview
 - `POST /api/jobs` (auth) → create a scheduled job
 - `DELETE /api/jobs/:id` (auth) → delete a job
-- `GET /api/jobs` → list jobs
-- `GET /api/logs` → list latest logs
+- `GET /api/jobs` (auth) → list jobs
+- `GET /api/logs` (auth) → list latest logs
 
 ### Database Schema
 - `jobs`: `id (string pk)`, `name`, `cron_time`, `query_text (text)`, `status`, `created_at`

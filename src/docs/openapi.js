@@ -86,7 +86,8 @@ export default {
     },
     '/jobs': {
       get: {
-        summary: 'List jobs',
+        summary: 'List jobs (auth required)',
+        security: [{ bearerAuth: [] }],
         responses: {
           200: { description: 'Jobs', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/Job' } } } } }
         }
@@ -118,7 +119,8 @@ export default {
     },
     '/logs': {
       get: {
-        summary: 'List latest logs',
+        summary: 'List latest logs (auth required)',
+        security: [{ bearerAuth: [] }],
         responses: {
           200: { description: 'Logs', content: { 'application/json': { schema: { type: 'array', items: { $ref: '#/components/schemas/JobLog' } } } } }
         }

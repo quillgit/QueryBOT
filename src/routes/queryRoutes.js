@@ -6,8 +6,8 @@ const router = Router();
 
 router.post('/run', requireAuth, runNow);
 router.post('/jobs', requireAuth, createScheduledJob);
-router.get('/jobs', listJobs);
+router.get('/jobs', requireAuth, listJobs);
 router.delete('/jobs/:id', requireAuth, deleteJob);
-router.get('/logs', listLogs);
+router.get('/logs', requireAuth, listLogs);
 
 export default router;

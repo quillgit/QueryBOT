@@ -53,12 +53,23 @@
         </div>
       </div>
 
-      <section class="row g-4 mt-1">
+      <section class="row g-4 mt-1" v-if="authed">
         <div class="col-lg-6">
           <JobList :jobs="jobs" @delete-job="onDeleteJob" @view-job="onViewJob" />
         </div>
         <div class="col-lg-6">
           <JobLogs :logs="logs" @view-log="onViewLog" />
+        </div>
+      </section>
+      <section v-else class="row g-4 mt-1">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title mb-2">Login Required</h5>
+              <p class="text-muted">Please login to view scheduled jobs and execution logs.</p>
+              <Login @logged-in="onLoggedIn" />
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -90,6 +101,7 @@ const docsUrl = `${API_BASE.replace(/\/api$/, '')}/api-docs`;
 
 async function refreshData() {
   errors.value = [];
+  if (!authed.value) { jobs.value = []; logs.value = []; return; }
   try {
     jobs.value = await listJobs();
   } catch (e) {
@@ -180,6 +192,7 @@ function clearErrors() { errors.value = []; }
 
 function onLoggedIn() {
   authed.value = true;
+  refreshData();
 }
 
 function doLogout() {
