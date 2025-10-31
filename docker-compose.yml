@@ -13,10 +13,11 @@ services:
       - .env
     environment:
       - NODE_ENV=production
-      # PORT is read by the app; host mapping uses the same PORT or defaults to 3000
+      # App listens on PORT inside the container
       - PORT=${PORT:-3000}
     ports:
-      - "${PORT:-3000}:3000"
+      # Map host PORT to the same container PORT
+      - "${PORT:-3000}:${PORT:-3000}"
     # Uncomment if you want to mount source during development
     # volumes:
     #   - ./:/app

@@ -147,7 +147,8 @@ docker compose up --build -d
 - Swagger: `http://localhost:${PORT-3000}/api-docs`
 
 Compose honors your `.env`:
-- Host port mapping uses `${PORT:-3000}` → container listens on `3000`.
+- Host port `${PORT:-3000}` maps to the same container port `${PORT:-3000}`.
+- Change `PORT` (e.g., `3001`) in `.env` to avoid conflicts.
 - Frontend build can read `VITE_API_BASE` at image build time.
 
 ### Stop
