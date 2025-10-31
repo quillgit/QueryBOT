@@ -134,6 +134,31 @@ npm run build:frontend
 ```
 Ensure CORS on backend is restricted appropriately.
 
+## Docker
+- Prerequisites: set required variables in `.env` (`ADMIN_USER`, `ADMIN_PASS`, `DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME`, and a strong `JWT_SECRET`).
+- Optional: set `VITE_API_BASE` if UI and API are on different hosts. For same-origin, omit it.
+
+### Build & Run
+```
+docker compose up --build -d
+```
+- Access UI: `http://localhost:${PORT-3000}/`
+- API: `http://localhost:${PORT-3000}/api`
+- Swagger: `http://localhost:${PORT-3000}/api-docs`
+
+Compose honors your `.env`:
+- Host port mapping uses `${PORT:-3000}` → container listens on `3000`.
+- Frontend build can read `VITE_API_BASE` at image build time.
+
+### Stop
+```
+docker compose down
+```
+
+### Notes
+- The app connects to your configured MySQL host (`DB_HOST`). Ensure the container can reach it and network/firewall rules permit access.
+- For split-host deployments, set `VITE_API_BASE` to your API URL before `docker compose up --build` so the frontend is built with the correct base.
+
 ## Security Checklist
 - Change `ADMIN_USER`/`ADMIN_PASS` and set a strong `JWT_SECRET`.
 - Restrict CORS origin in production (instead of permissive `cors()`).

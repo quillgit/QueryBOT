@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: .
+      args:
+        # Pass to Docker build so Vite can read it during frontend build
+        VITE_API_BASE: ${VITE_API_BASE}
+    image: query-bot:latest
+    container_name: query-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      # PORT is read by the app; host mapping uses the same PORT or defaults to 3000
+      - PORT=${PORT:-3000}
+    ports:
+      - "${PORT:-3000}:3000"
+    # Uncomment if you want to mount source during development
+    # volumes:
+    #   - ./:/app
+    #   - /app/node_modules
