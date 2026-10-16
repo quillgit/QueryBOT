@@ -55,11 +55,22 @@ everything.
 ksmart-web/
 ├── index.html        # app shell + phone frame
 ├── css/style.css     # theme and all screen styles
-└── js/
-    ├── store.js      # localStorage data layer (users, devices, records)
-    ├── ble.js        # lock controller: simulated + Web Bluetooth backends
-    └── app.js        # hash router + all screens
+├── js/
+│   ├── store.js      # localStorage data layer (users, devices, records)
+│   ├── ble.js        # lock controller: simulated + Web Bluetooth backends
+│   └── app.js        # hash router + all screens
+└── esp32/            # single-file embedded build (ESP32 IS the lock)
+    ├── Ksmart_ESP32.ino
+    └── README.md
 ```
+
+## Embedded build (ESP32)
+
+`esp32/Ksmart_ESP32.ino` is a single-file sketch that turns an ESP32 into a
+self-contained smart lock: it serves this UI over WiFi and opens a door via a
+relay (GPIO), with the pairing code and open-time stored in NVS. Flash just the
+one file — the web page is embedded in `PROGMEM`. See `esp32/README.md` for
+wiring and setup.
 
 ## Wiring up real locks
 
